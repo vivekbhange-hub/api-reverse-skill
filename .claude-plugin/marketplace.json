@@ -1,0 +1,15 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "api-reverse-skill",
+  "description": "Turn any undocumented API into an OpenAPI spec, a typed SDK, a mock server and contract tests, from a HAR file you already have.",
+  "owner": { "name": "Vivek Bhange", "url": "https://github.com/vivekbhange-hub" },
+  "plugins": [
+    {
+      "name": "api-reverse-skill",
+      "description": "Seven skills and three agents that scrub a HAR capture, infer an OpenAPI 3.0 spec with a confidence report, document it, generate zero-dependency TypeScript and Python clients, serve a mock, and catch breaking changes in CI.",
+      "source": "./",
+      "category": "development",
+      "homepage": "https://github.com/vivekbhange-hub/api-reverse-skill"
+    }
+  ]
+}

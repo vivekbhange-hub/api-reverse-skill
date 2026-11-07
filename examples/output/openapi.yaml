@@ -1,0 +1,1044 @@
+components:
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: "Detected on 21 requests. Credential values are never recorded in this spec."
+      scheme: bearer
+      type: http
+    xApiKeyHeader:
+      description: "Detected on 1 request. Credential values are never recorded in this spec."
+      in: header
+      name: X-API-Key
+      type: apiKey
+info:
+  description: "Inferred by har2openapi.py from 23 recorded requests in a HAR capture. Field names, types and required flags come from the samples only; read inference-report.md before relying on it."
+  title: "Pet Shelter API"
+  version: "0.1.0"
+openapi: "3.0.3"
+paths:
+  /v1/adoptions:
+    post:
+      description: "Inferred from 1 recorded request."
+      operationId: createAdoption
+      requestBody:
+        content:
+          application/json:
+            example:
+              applicant:
+                email: "redacted@example.invalid"
+                name: "Kim Ito"
+                phone: REDACTED-phone
+              home_type: apartment
+              pet_id: 31
+            schema:
+              properties:
+                applicant:
+                  properties:
+                    email:
+                      example: "redacted@example.invalid"
+                      format: email
+                      type: string
+                    name:
+                      example: "Kim Ito"
+                      type: string
+                    phone:
+                      example: REDACTED-phone
+                      type: string
+                  required:
+                    - email
+                    - name
+                    - phone
+                  type: object
+                home_type:
+                  example: apartment
+                  type: string
+                pet_id:
+                  example: 31
+                  type: integer
+              required:
+                - applicant
+                - home_type
+                - pet_id
+              type: object
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              example:
+                applicant:
+                  email: "redacted@example.invalid"
+                  name: "Kim Ito"
+                  phone: REDACTED-phone
+                id: "2a3b4c5d-6e7f-4a8b-9c0d-1e2f3a4b5c6d"
+                pet_id: 31
+                reviewed_at: null
+                status: pending
+                submitted_at: "2026-11-02T10:22:00Z"
+              schema:
+                properties:
+                  applicant:
+                    properties:
+                      email:
+                        example: "redacted@example.invalid"
+                        format: email
+                        type: string
+                      name:
+                        example: "Kim Ito"
+                        type: string
+                      phone:
+                        example: REDACTED-phone
+                        type: string
+                    required:
+                      - email
+                      - name
+                      - phone
+                    type: object
+                  id:
+                    example: "2a3b4c5d-6e7f-4a8b-9c0d-1e2f3a4b5c6d"
+                    format: uuid
+                    type: string
+                  pet_id:
+                    example: 31
+                    type: integer
+                  reviewed_at:
+                    nullable: true
+                  status:
+                    example: pending
+                    type: string
+                  submitted_at:
+                    example: "2026-11-02T10:22:00Z"
+                    format: date-time
+                    type: string
+                required:
+                  - applicant
+                  - id
+                  - pet_id
+                  - reviewed_at
+                  - status
+                  - submitted_at
+                type: object
+          description: Created
+      security:
+        - bearerAuth: []
+      tags:
+        - adoptions
+      x-apirev-confidence: low
+      x-apirev-samples: 1
+  "/v1/adoptions/{adoptionId}":
+    get:
+      description: "Inferred from 3 recorded requests."
+      operationId: getAdoption
+      parameters:
+        - description: "Inferred as UUID."
+          in: path
+          name: adoptionId
+          required: true
+          schema:
+            example: "1f0e2d3c-4b5a-4987-8a6b-5c4d3e2f1a0b"
+            format: uuid
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                applicant:
+                  email: "redacted@example.invalid"
+                  name: "Sam Okafor"
+                  phone: REDACTED-phone
+                id: "9b2f6c1e-5d3a-4f8e-a1c2-3e4d5f6a7b8c"
+                pet_id: 12
+                reviewed_at: null
+                status: pending
+                submitted_at: "2026-10-28T14:05:00Z"
+              schema:
+                properties:
+                  applicant:
+                    properties:
+                      email:
+                        example: "redacted@example.invalid"
+                        format: email
+                        type: string
+                      name:
+                        example: "Sam Okafor"
+                        type: string
+                      phone:
+                        example: REDACTED-phone
+                        type: string
+                    required:
+                      - email
+                      - name
+                      - phone
+                    type: object
+                  id:
+                    example: "9b2f6c1e-5d3a-4f8e-a1c2-3e4d5f6a7b8c"
+                    format: uuid
+                    type: string
+                  pet_id:
+                    example: 12
+                    type: integer
+                  reviewed_at:
+                    example: "2026-10-22T16:40:00Z"
+                    format: date-time
+                    nullable: true
+                    type: string
+                  status:
+                    example: pending
+                    type: string
+                  submitted_at:
+                    example: "2026-10-28T14:05:00Z"
+                    format: date-time
+                    type: string
+                required:
+                  - applicant
+                  - id
+                  - pet_id
+                  - reviewed_at
+                  - status
+                  - submitted_at
+                type: object
+          description: OK
+      security:
+        - bearerAuth: []
+      tags:
+        - adoptions
+      x-apirev-confidence: medium
+      x-apirev-samples: 3
+  /v1/auth/login:
+    post:
+      description: "Inferred from 1 recorded request."
+      operationId: postAuthLogin
+      requestBody:
+        content:
+          application/json:
+            example:
+              email: "redacted@example.invalid"
+              password: REDACTED
+            schema:
+              properties:
+                email:
+                  example: "redacted@example.invalid"
+                  format: email
+                  type: string
+                password:
+                  example: REDACTED
+                  type: string
+              required:
+                - email
+                - password
+              type: object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                access_token: REDACTED
+                expires_in: 3600
+                token_type: Bearer
+                user:
+                  email: "redacted@example.invalid"
+                  id: 7
+                  name: "Dana Reyes"
+                  role: staff
+              schema:
+                properties:
+                  access_token:
+                    example: REDACTED
+                    type: string
+                  expires_in:
+                    example: 3600
+                    type: integer
+                  token_type:
+                    example: Bearer
+                    type: string
+                  user:
+                    properties:
+                      email:
+                        example: "redacted@example.invalid"
+                        format: email
+                        type: string
+                      id:
+                        example: 7
+                        type: integer
+                      name:
+                        example: "Dana Reyes"
+                        type: string
+                      role:
+                        example: staff
+                        type: string
+                    required:
+                      - email
+                      - id
+                      - name
+                      - role
+                    type: object
+                required:
+                  - access_token
+                  - expires_in
+                  - token_type
+                  - user
+                type: object
+          description: OK
+      tags:
+        - auth
+      x-apirev-confidence: low
+      x-apirev-samples: 1
+  /v1/me:
+    get:
+      description: "Inferred from 1 recorded request."
+      operationId: getMe
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                email: "redacted@example.invalid"
+                id: 7
+                name: "Dana Reyes"
+                role: staff
+              schema:
+                properties:
+                  email:
+                    example: "redacted@example.invalid"
+                    format: email
+                    type: string
+                  id:
+                    example: 7
+                    type: integer
+                  name:
+                    example: "Dana Reyes"
+                    type: string
+                  role:
+                    example: staff
+                    type: string
+                required:
+                  - email
+                  - id
+                  - name
+                  - role
+                type: object
+          description: OK
+      security:
+        - bearerAuth: []
+      tags:
+        - me
+      x-apirev-confidence: low
+      x-apirev-samples: 1
+  /v1/pets:
+    get:
+      description: "Inferred from 4 recorded requests. Paginated: page-based (query `limit`, `page`; response field `next_page`)."
+      operationId: listPets
+      parameters:
+        - description: "Seen in 4 of 4 requests. Observed values: 3."
+          in: query
+          name: limit
+          required: true
+          schema:
+            example: 3
+            type: integer
+        - description: "Seen in 4 of 4 requests. Observed values: 1, 2, 3."
+          in: query
+          name: page
+          required: true
+          schema:
+            example: 1
+            type: integer
+        - description: "Seen in 1 of 4 requests. Observed values: cat."
+          in: query
+          name: species
+          required: false
+          schema:
+            example: cat
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                data:
+                  - adopted: false
+                    birth_date: "2021-06-02"
+                    breed: "Domestic Shorthair"
+                    created_at: "2026-10-04T09:30:00Z"
+                    id: 3
+                    microchip_id: "985112003456789"
+                    name: Miso
+                    photo_url: "https://img.petshelter.example/pets/3.jpg"
+                    shelter: north-side
+                    species: cat
+                    vaccinated: true
+                    weight_kg: 4.2
+                  - adopted: false
+                    birth_date: "2019-03-15"
+                    breed: "Border Collie"
+                    created_at: "2026-10-08T09:30:00Z"
+                    id: 7
+                    microchip_id: "985112003451234"
+                    name: Pepper
+                    photo_url: "https://img.petshelter.example/pets/7.jpg"
+                    shelter: north-side
+                    species: dog
+                    vaccinated: true
+                    weight_kg: 18
+                limit: 3
+                next_page: 2
+                page: 1
+                total: 8
+              schema:
+                properties:
+                  data:
+                    items:
+                      properties:
+                        adopted:
+                          example: false
+                          type: boolean
+                        birth_date:
+                          example: "2021-06-02"
+                          format: date
+                          type: string
+                        breed:
+                          example: "Domestic Shorthair"
+                          type: string
+                        created_at:
+                          example: "2026-10-04T09:30:00Z"
+                          format: date-time
+                          type: string
+                        id:
+                          example: 3
+                          type: integer
+                        microchip_id:
+                          example: "985112003456789"
+                          nullable: true
+                          type: string
+                        name:
+                          example: Miso
+                          type: string
+                        photo_url:
+                          example: "https://img.petshelter.example/pets/3.jpg"
+                          format: uri
+                          type: string
+                        shelter:
+                          enum:
+                            - east-end
+                            - lakeview-annex
+                            - north-side
+                          example: north-side
+                          type: string
+                        species:
+                          enum:
+                            - cat
+                            - dog
+                            - rabbit
+                          example: cat
+                          type: string
+                        vaccinated:
+                          example: true
+                          type: boolean
+                        weight_kg:
+                          example: 4.2
+                          type: number
+                      required:
+                        - adopted
+                        - birth_date
+                        - breed
+                        - created_at
+                        - id
+                        - microchip_id
+                        - name
+                        - photo_url
+                        - shelter
+                        - species
+                        - vaccinated
+                        - weight_kg
+                      type: object
+                    type: array
+                  limit:
+                    example: 3
+                    type: integer
+                  next_page:
+                    example: 2
+                    nullable: true
+                    type: integer
+                  page:
+                    example: 1
+                    type: integer
+                  total:
+                    example: 8
+                    type: integer
+                required:
+                  - data
+                  - limit
+                  - next_page
+                  - page
+                  - total
+                type: object
+          description: OK
+      security:
+        - bearerAuth: []
+      tags:
+        - pets
+      x-apirev-confidence: medium
+      x-apirev-pagination:
+        linkHeader: false
+        query:
+          - limit
+          - page
+        response:
+          - next_page
+        style: page
+      x-apirev-samples: 4
+    post:
+      description: "Inferred from 2 recorded requests."
+      operationId: createPet
+      requestBody:
+        content:
+          application/json:
+            example:
+              birth_date: "2025-12-01"
+              breed: Corgi
+              name: Waffles
+              shelter: north-side
+              species: dog
+              vaccinated: false
+            schema:
+              properties:
+                birth_date:
+                  example: "2025-12-01"
+                  format: date
+                  type: string
+                breed:
+                  example: Corgi
+                  type: string
+                name:
+                  example: Waffles
+                  type: string
+                shelter:
+                  example: north-side
+                  type: string
+                species:
+                  example: dog
+                  type: string
+                vaccinated:
+                  example: false
+                  type: boolean
+              required:
+                - name
+                - species
+              type: object
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              example:
+                adopted: false
+                birth_date: "2025-12-01"
+                breed: Corgi
+                created_at: "2026-10-11T09:30:00Z"
+                id: 64
+                microchip_id: null
+                name: Waffles
+                photo_url: "https://img.petshelter.example/pets/64.jpg"
+                shelter: north-side
+                species: dog
+                vaccinated: false
+                weight_kg: 7.5
+              schema:
+                properties:
+                  adopted:
+                    example: false
+                    type: boolean
+                  birth_date:
+                    example: "2025-12-01"
+                    format: date
+                    type: string
+                  breed:
+                    example: Corgi
+                    type: string
+                  created_at:
+                    example: "2026-10-11T09:30:00Z"
+                    format: date-time
+                    type: string
+                  id:
+                    example: 64
+                    type: integer
+                  microchip_id:
+                    nullable: true
+                  name:
+                    example: Waffles
+                    type: string
+                  photo_url:
+                    example: "https://img.petshelter.example/pets/64.jpg"
+                    format: uri
+                    type: string
+                  shelter:
+                    example: north-side
+                    type: string
+                  species:
+                    example: dog
+                    type: string
+                  vaccinated:
+                    example: false
+                    type: boolean
+                  weight_kg:
+                    example: 7.5
+                    type: number
+                required:
+                  - adopted
+                  - birth_date
+                  - breed
+                  - created_at
+                  - id
+                  - microchip_id
+                  - name
+                  - photo_url
+                  - shelter
+                  - species
+                  - vaccinated
+                  - weight_kg
+                type: object
+          description: Created
+        "422":
+          content:
+            application/json:
+              example:
+                error:
+                  code: validation_failed
+                  fields:
+                    - field: name
+                      issue: "must not be empty"
+                    - field: species
+                      issue: "must be one of cat, dog, rabbit"
+                  message: "2 fields are invalid"
+              schema:
+                properties:
+                  error:
+                    properties:
+                      code:
+                        example: validation_failed
+                        type: string
+                      fields:
+                        items:
+                          properties:
+                            field:
+                              example: name
+                              type: string
+                            issue:
+                              example: "must not be empty"
+                              type: string
+                          required:
+                            - field
+                            - issue
+                          type: object
+                        type: array
+                      message:
+                        example: "2 fields are invalid"
+                        type: string
+                    required:
+                      - code
+                      - fields
+                      - message
+                    type: object
+                required:
+                  - error
+                type: object
+          description: "Unprocessable Content"
+      security:
+        - bearerAuth: []
+      tags:
+        - pets
+      x-apirev-confidence: medium
+      x-apirev-samples: 2
+  "/v1/pets/{petId}":
+    delete:
+      description: "Inferred from 1 recorded request."
+      operationId: deletePet
+      parameters:
+        - description: "Inferred as integer id."
+          in: path
+          name: petId
+          required: true
+          schema:
+            example: 3
+            type: integer
+      responses:
+        "204":
+          description: "No Content"
+      security:
+        - bearerAuth: []
+      tags:
+        - pets
+      x-apirev-confidence: low
+      x-apirev-samples: 1
+    get:
+      description: "Inferred from 5 recorded requests."
+      operationId: getPet
+      parameters:
+        - description: "Inferred as integer id."
+          in: path
+          name: petId
+          required: true
+          schema:
+            example: 3
+            type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                adopted: false
+                birth_date: "2021-06-02"
+                breed: "Domestic Shorthair"
+                created_at: "2026-10-04T09:30:00Z"
+                id: 3
+                medical:
+                  last_checkup: "2026-09-14"
+                  notes: null
+                  spayed_neutered: true
+                microchip_id: "985112003456789"
+                name: Miso
+                photo_url: "https://img.petshelter.example/pets/3.jpg"
+                shelter: north-side
+                species: cat
+                vaccinated: true
+                weight_kg: 4.2
+              schema:
+                properties:
+                  adopted:
+                    example: false
+                    type: boolean
+                  birth_date:
+                    example: "2021-06-02"
+                    format: date
+                    type: string
+                  breed:
+                    example: "Domestic Shorthair"
+                    type: string
+                  created_at:
+                    example: "2026-10-04T09:30:00Z"
+                    format: date-time
+                    type: string
+                  id:
+                    example: 3
+                    type: integer
+                  medical:
+                    properties:
+                      last_checkup:
+                        example: "2026-09-14"
+                        format: date
+                        type: string
+                      notes:
+                        example: "Needs dental check"
+                        nullable: true
+                        type: string
+                      spayed_neutered:
+                        example: true
+                        type: boolean
+                    required:
+                      - last_checkup
+                      - notes
+                      - spayed_neutered
+                    type: object
+                  microchip_id:
+                    example: "985112003456789"
+                    type: string
+                  name:
+                    example: Miso
+                    type: string
+                  photo_url:
+                    example: "https://img.petshelter.example/pets/3.jpg"
+                    format: uri
+                    type: string
+                  shelter:
+                    example: north-side
+                    type: string
+                  species:
+                    example: cat
+                    type: string
+                  vaccinated:
+                    example: true
+                    type: boolean
+                  weight_kg:
+                    example: 4.2
+                    type: number
+                required:
+                  - adopted
+                  - birth_date
+                  - breed
+                  - created_at
+                  - id
+                  - medical
+                  - microchip_id
+                  - name
+                  - photo_url
+                  - shelter
+                  - species
+                  - vaccinated
+                  - weight_kg
+                type: object
+          description: OK
+        "404":
+          content:
+            application/json:
+              example:
+                error:
+                  code: not_found
+                  message: "Pet 999 not found"
+              schema:
+                properties:
+                  error:
+                    properties:
+                      code:
+                        example: not_found
+                        type: string
+                      message:
+                        example: "Pet 999 not found"
+                        type: string
+                    required:
+                      - code
+                      - message
+                    type: object
+                required:
+                  - error
+                type: object
+          description: "Not Found"
+      security:
+        - bearerAuth: []
+      tags:
+        - pets
+      x-apirev-confidence: high
+      x-apirev-samples: 5
+    patch:
+      description: "Inferred from 1 recorded request."
+      operationId: updatePet
+      parameters:
+        - description: "Inferred as integer id."
+          in: path
+          name: petId
+          required: true
+          schema:
+            example: 3
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            example:
+              vaccinated: true
+              weight_kg: 11.4
+            schema:
+              properties:
+                vaccinated:
+                  example: true
+                  type: boolean
+                weight_kg:
+                  example: 11.4
+                  type: number
+              required:
+                - vaccinated
+                - weight_kg
+              type: object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                adopted: false
+                birth_date: "2023-04-12"
+                breed: Beagle
+                created_at: "2026-10-16T09:30:00Z"
+                id: 42
+                microchip_id: "985112003450042"
+                name: Biscuit
+                photo_url: "https://img.petshelter.example/pets/42.jpg"
+                shelter: lakeview-annex
+                species: dog
+                vaccinated: true
+                weight_kg: 11.4
+              schema:
+                properties:
+                  adopted:
+                    example: false
+                    type: boolean
+                  birth_date:
+                    example: "2023-04-12"
+                    format: date
+                    type: string
+                  breed:
+                    example: Beagle
+                    type: string
+                  created_at:
+                    example: "2026-10-16T09:30:00Z"
+                    format: date-time
+                    type: string
+                  id:
+                    example: 42
+                    type: integer
+                  microchip_id:
+                    example: "985112003450042"
+                    type: string
+                  name:
+                    example: Biscuit
+                    type: string
+                  photo_url:
+                    example: "https://img.petshelter.example/pets/42.jpg"
+                    format: uri
+                    type: string
+                  shelter:
+                    example: lakeview-annex
+                    type: string
+                  species:
+                    example: dog
+                    type: string
+                  vaccinated:
+                    example: true
+                    type: boolean
+                  weight_kg:
+                    example: 11.4
+                    type: number
+                required:
+                  - adopted
+                  - birth_date
+                  - breed
+                  - created_at
+                  - id
+                  - microchip_id
+                  - name
+                  - photo_url
+                  - shelter
+                  - species
+                  - vaccinated
+                  - weight_kg
+                type: object
+          description: OK
+      security:
+        - bearerAuth: []
+      tags:
+        - pets
+      x-apirev-confidence: low
+      x-apirev-samples: 1
+  "/v1/shelters/{shelterSlug}":
+    get:
+      description: "Inferred from 3 recorded requests."
+      operationId: getShelter
+      parameters:
+        - description: "Inferred as slug by cardinality (3 distinct values, constant parent)."
+          in: path
+          name: shelterSlug
+          required: true
+          schema:
+            example: east-end
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                capacity: 40
+                city: Rivertown
+                email: "redacted@example.invalid"
+                name: "North Side Shelter"
+                open_today: true
+                phone: REDACTED-phone
+                slug: north-side
+              schema:
+                properties:
+                  capacity:
+                    example: 40
+                    type: integer
+                  city:
+                    example: Rivertown
+                    type: string
+                  email:
+                    example: "redacted@example.invalid"
+                    format: email
+                    type: string
+                  name:
+                    example: "North Side Shelter"
+                    type: string
+                  open_today:
+                    example: true
+                    type: boolean
+                  phone:
+                    example: REDACTED-phone
+                    type: string
+                  slug:
+                    example: north-side
+                    type: string
+                required:
+                  - capacity
+                  - city
+                  - email
+                  - name
+                  - open_today
+                  - phone
+                  - slug
+                type: object
+          description: OK
+      security:
+        - bearerAuth: []
+      tags:
+        - shelters
+      x-apirev-confidence: medium
+      x-apirev-samples: 3
+  /v1/stats/daily:
+    get:
+      description: "Inferred from 1 recorded request."
+      operationId: getStatsDaily
+      parameters:
+        - description: "Seen in 1 of 1 request. Observed values: 2026-11-01."
+          in: query
+          name: date
+          required: true
+          schema:
+            example: "2026-11-01"
+            format: date
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                adoptions: 2
+                date: "2026-11-01"
+                intakes: 4
+                occupancy: 0.71
+              schema:
+                properties:
+                  adoptions:
+                    example: 2
+                    type: integer
+                  date:
+                    example: "2026-11-01"
+                    format: date
+                    type: string
+                  intakes:
+                    example: 4
+                    type: integer
+                  occupancy:
+                    example: 0.71
+                    type: number
+                required:
+                  - adoptions
+                  - date
+                  - intakes
+                  - occupancy
+                type: object
+          description: OK
+      security:
+        - xApiKeyHeader: []
+      tags:
+        - stats
+      x-apirev-confidence: low
+      x-apirev-samples: 1
+servers:
+  - url: "https://api.petshelter.example"
+tags:
+  - name: adoptions
+  - name: auth
+  - name: me
+  - name: pets
+  - name: shelters
+  - name: stats
