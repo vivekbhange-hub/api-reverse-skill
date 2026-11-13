@@ -61,7 +61,7 @@ class QueryAndBodyTests(unittest.TestCase):
 
     def test_json_keys_and_value_patterns(self):
         body = {"user": {"password": "hunter2", "token_type": "Bearer", "expires_in": 3600,
-                         "refresh_token": "r1", "note": "key AKIAABCDEFGHIJKLMNOP here",
+                         "refresh_token": "r1", "note": "key AKIA" + "ABCDEFGHIJKLMNOP here",
                          "blob": JWT, "hash": "a" * 40, "count": 3}}
         out, summary = run(entry("POST", API + "/login", req_body=body, body=body))
         resp = json.loads(out["log"]["entries"][0]["response"]["content"]["text"])["user"]
@@ -78,7 +78,7 @@ class QueryAndBodyTests(unittest.TestCase):
         self.assertGreaterEqual(summary["redacted"]["json key: password"], 2)
 
     def test_provider_keys_and_text_bodies(self):
-        out, _ = run(entry("GET", API + "/a", text="key=sk_live_abcdefgh12345678 ok", mime="text/plain"))
+        out, _ = run(entry("GET", API + "/a", text="key=sk_live_" + "abcdefgh12345678 ok", mime="text/plain"))
         self.assertEqual(out["log"]["entries"][0]["response"]["content"]["text"], "key=REDACTED-key ok")
 
     def test_form_bodies(self):
