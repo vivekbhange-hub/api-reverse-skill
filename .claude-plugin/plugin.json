@@ -2,7 +2,7 @@
   "name": "api-reverse-skill",
   "description": "Turn any undocumented API into an OpenAPI spec, a typed SDK, a mock server and contract tests, from a HAR file you already have. Secrets are scrubbed first; every inference comes with a sample count.",
   "version": "1.0.0",
-  "author": { "name": "Vivek Bhange", "url": "https://github.com/vivekbhange-hub" },
+  "author": { "name": "Vivek Bhange", "url": "https://vivekbhange.tech" },
   "homepage": "https://github.com/vivekbhange-hub/api-reverse-skill",
   "repository": "https://github.com/vivekbhange-hub/api-reverse-skill",
   "license": "MIT",

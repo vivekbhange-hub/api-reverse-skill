@@ -2,7 +2,7 @@
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "api-reverse-skill",
   "description": "Turn any undocumented API into an OpenAPI spec, a typed SDK, a mock server and contract tests, from a HAR file you already have.",
-  "owner": { "name": "Vivek Bhange", "url": "https://github.com/vivekbhange-hub" },
+  "owner": { "name": "Vivek Bhange", "url": "https://vivekbhange.tech" },
   "plugins": [
     {
       "name": "api-reverse-skill",
